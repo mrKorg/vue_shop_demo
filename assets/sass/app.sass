@@ -1,0 +1,675 @@
+@import "_reset"
+@import "_fonts"
+@import "_keyframes"
+@import "_mixin"
+@import "_flexboxgrid"
+
+// Colors
+$white: white
+$black: #0d0f0f
+$dark: #121a1d
+$grayBorder: rgba($black, .2)
+$whiteBorder: rgba($white, .2)
+$grayBg: #f6f6f6
+$gray: rgba($black, .5)
+$grayLite: #f7f7f7
+$red: #DB2A31
+$animation: .4s ease-in-out
+$pink: #E5159B
+$purple: #623182
+$orange: #FB5228
+$yellow: #E4DA32
+
+body
+    font-family: 'museo_sans'
+    font-size: 14px
+    &.showSidebar
+        overflow: hidden
+
+%fontTitle
+    text-transform: uppercase
+    letter-spacing: 1px
+
+%titleSmall
+    font-weight: 500
+    @extend %fontTitle
+    @include xl()
+        font-size: 20px
+    @include lg()
+        font-size: 18px
+    @include md()
+        font-size: 14px
+    @include xs()
+        font-size: 14px
+
+%titleMiddle
+    font-weight: 700
+    line-height: 1.4
+    @extend %fontTitle
+    @include xl()
+        font-size: 24px
+    @include lg()
+        font-size: 22px
+    @include md()
+        font-size: 20px
+    @include xs()
+        font-size: 18px
+
+%titleBig
+    font-weight: 700
+    line-height: 1.4
+    @extend %fontTitle
+    @include xl()
+        font-size: 36px
+    @include lg()
+        font-size: 36px
+    @include md()
+        font-size: 32px
+    @include xs()
+        font-size: 24px
+
+%marginBottomBig
+    @include xl()
+        margin-bottom: 100px
+    @include lg()
+        margin-bottom: 80px
+    @include md()
+        margin-bottom: 60px
+    @include xs()
+        margin-bottom: 40px
+
+%marginBottomMiddle
+    @include xl()
+        margin-bottom: 50px
+    @include lg()
+        margin-bottom: 40px
+    @include md()
+        margin-bottom: 30px
+    @include xs()
+        margin-bottom: 20px
+
+%marginBottomSmall
+    @media (min-width: $md)
+        margin-bottom: 20px
+    @include xs()
+        margin-bottom: 10px
+
+%paddingTopMiddle
+    @include xl()
+        padding-top: 50px
+    @include lg()
+        padding-top: 40px
+    @include md()
+        padding-top: 30px
+    @include xs()
+        padding-top: 20px
+
+%paddingBottomMiddle
+    @include xl()
+        padding-bottom: 50px
+    @include lg()
+        padding-bottom: 40px
+    @include md()
+        padding-bottom: 30px
+    @include xs()
+        padding-bottom: 20px
+
+%paddingTopBig
+    @include xl()
+        padding-top: 100px
+    @include lg()
+        padding-top: 80px
+    @include md()
+        padding-top: 60px
+    @include xs()
+        padding-top: 40px
+
+%paddingBottomBig
+    @include xl()
+        padding-bottom: 100px
+    @include lg()
+        padding-bottom: 80px
+    @include md()
+        padding-bottom: 60px
+    @include xs()
+        padding-bottom: 40px
+
+.fullLine
+    padding: 0
+    border: 0
+    height: 1px
+    background: $whiteBorder
+    @media (min-width: $lg)
+        margin: 0 -50vw 40px
+    @include md()
+        margin: 0 -50vw 30px
+    @include xs()
+        margin: 0 -50vw 20px
+    @include modifier(right)
+        @media (min-width: $lg)
+            margin-left: 0
+
+.line
+    padding: 0
+    border: 0
+    height: 1px
+    margin: 0 0 30px
+    background: $whiteBorder
+
+.eBtn
+    @include inline-block()
+    @extend %fontTitle
+    font-weight: 700
+    line-height: 44px
+    text-align: center
+    border: none
+    padding: 0 15px
+    cursor: pointer
+    @include modifier(black)
+        background: $black
+        color: $white
+        &:hover
+            opacity: .7
+    @include modifier(white)
+        background: $white
+        color: $black
+        &:hover
+            opacity: .7
+
+.eLink
+    @include inline-block()
+    font-weight: 500
+    text-align: center
+    border: none
+    line-height: 1.2
+    cursor: pointer
+    @include modifier(black)
+        color: $black
+        border-bottom: 1px solid $black
+        &:hover
+            border-bottom: 1px solid transparent
+    @include modifier(white)
+        color: $white
+        border-bottom: 1px solid $white
+        &:hover
+            border-bottom: 1px solid transparent
+
+.gridRow
+    & > .row
+        @media (min-width: $lg)
+            margin: 0 -20px
+        & > div
+            @media (min-width: $lg)
+                padding: 0 20px 40px
+            @include md()
+                padding-bottom: 20px
+            @include xs()
+                padding-bottom: 20px
+// Header
+.header
+    margin-bottom: 40px
+    @include element(logo)
+        @include inline-block()
+        @extend %titleMiddle
+        color: $white
+        line-height: 35px
+        &:hover
+            opacity: .7
+        @include xs()
+            .text
+                display: none
+        svg
+            @include inline-block()
+            width: 40px
+            height: auto
+    @include element(cart)
+        @include inline-block()
+        @extend %titleSmall
+        color: $white
+        line-height: 20px
+        &:hover
+            opacity: .7
+        svg
+            @include inline-block()
+            width: 20px
+            height: 20px
+            fill: $white
+        .text
+            padding-left: 10px
+
+// Pages
+.page
+    position: relative
+    min-height: 100vh
+    padding: 40px 0
+    @include element(title)
+        @extend %titleBig, %marginBottomMiddle
+        text-align: center
+    @include element(wrap)
+        & > .row
+            margin: 0 -20px
+            & > div
+                padding: 0 20px 40px
+
+// Catalog
+.pCatalog
+    position: relative
+    background: $black
+    color: $white
+    & > .container
+        position: relative
+        z-index: 100
+    @include element(wrap)
+        @include position(absolute, 0, 0, null, 0, 1)
+        @include xs()
+            display: none
+        .container
+            position: relative
+    @include element(box)
+        overflow: hidden
+        @include position(absolute, 0, 30%, null, null, 10)
+        @media (min-width: $lg)
+            width: 575px
+            height: 330px
+        @media (max-width: $md-top)
+            width: 300px
+            height: 172px
+    @include element(bg)
+        position: relative
+        transition: transform 300ms ease
+        z-index: 2
+        @media (min-width: $lg)
+            width: 575px
+            height: 330px
+        @media (max-width: $md-top)
+            width: 300px
+            height: 172px
+        svg
+            display: block
+            width: inherit
+            height: inherit
+            fill: $black
+        &::before,
+        &::after
+            content: ''
+            background: $black
+            position: absolute
+            top: 0
+            bottom: 0
+            width: 100%
+        &::before
+            left: -100%
+            margin-left: 10px
+        &::after
+            right: -100%
+            margin-right: 10px
+
+    @include element(serial)
+        background: $dark
+        color: $white
+        @media (min-width: $lg)
+            padding: 40px
+            margin-bottom: 40px
+        @media (max-width: $md-top)
+            padding: 20px
+            margin-bottom: 20px
+            margin-top: -20px
+
+.pProduct
+    @extend %paddingBottomBig
+    background: $black
+    color: $white
+    .page__wrap
+        & > .row
+            position: relative
+            z-index: 2
+    @include element(wrap)
+        padding-top: 10px
+        position: relative
+        @extend %marginBottomMiddle
+    @include element(info)
+        @media (min-width: $lg)
+            padding-right: 40px
+        @include md()
+            max-width: 718px
+            padding-left: 10px
+            padding-right: 10px
+            margin: 0 auto
+        @include xs()
+            max-width: 767px
+            padding-left: 15px
+            padding-right: 15px
+            margin: 0 auto
+    @include element(image)
+        border: 1px solid $whiteBorder
+        height: 400px
+        display: flex
+        flex-direction: row
+        flex-wrap: nowrap
+        justify-content: center
+        align-content: center
+        align-items: center
+        img
+            order: 0
+            flex: 0 1 auto
+            align-self: auto
+    @include element(title)
+        @extend %fontTitle, %titleMiddle
+        font-weight: 700
+        margin-bottom: 12px
+    @include element(price)
+        @extend %titleMiddle
+    @include element(sku)
+        @extend %fontTitle
+        opacity: .5
+    @include element(hr)
+        padding: 0
+        border: 0
+        height: 1px
+        margin: 25px 0
+        background: $whiteBorder
+    @include element(description)
+        margin-bottom: -20px
+        & > p
+            margin-bottom: 15px
+        .title
+            font-weight: 700
+            @extend %fontTitle
+            padding-right: 5px
+        .value
+            opacity: .5
+        .text
+            line-height: 2.05
+            padding-bottom: 10px
+            p
+                a
+                    color: inherit
+
+.eProduct
+    transition: background $animation
+    height: 100%
+    background: $dark
+    @include element(header)
+        padding: 10px 20px
+        .row
+            margin: 0 -5px
+            & > div
+                padding: 0 5px
+    @include element(sku)
+        font-size: 12px
+        @extend %fontTitle
+        color: inherit
+        opacity: .5
+    @include element(type)
+        cursor: pointer
+        svg
+            display: block
+            &.pink
+                fill: $pink
+            &.purple
+                fill: $purple
+            &.orange
+                fill: $orange
+            &.yellow
+                fill: $yellow
+    @include element(image)
+        display: block
+        overflow: hidden
+        position: relative
+        &:hover
+            img
+                transform: scale(1.1)
+        img
+            display: block
+            width: 100%
+            transition: transform .2s ease
+    @include element(title)
+        a
+            display: block
+            padding: 20px 20px 10px
+            @extend %fontTitle
+            color: inherit
+            &:hover
+                opacity: .7
+    @include element(footer)
+        padding: 10px 20px 20px
+    @include element(price)
+        font-size: 14px
+        @extend %fontTitle
+        color: inherit
+    @include element(btn)
+        text-align: right
+        a
+            color: inherit
+            cursor: pointer
+            &:hover
+                opacity: .7
+
+// Parts
+.bFilterGroup
+    @include element(box)
+        @media (min-width: $lg)
+            display: block
+        @media (max-width: $md-top)
+            display: none
+            padding-top: 40px
+            margin-bottom: -20px
+
+.bFilter
+    @media (min-width: $lg)
+        margin-bottom: 60px
+    @media (max-width: $md-top)
+        margin-bottom: 30px
+    @include modifier(top)
+        margin-bottom: 30px
+        padding: 20px 30px
+        background: $black
+        border: 1px solid $whiteBorder
+        @media (max-width: $md-top)
+            display: none
+    @include element(header)
+        position: relative
+    @include element(title)
+        @extend %titleMiddle
+        padding-bottom: 20px
+        margin-bottom: 30px
+        color: inherit
+        border-bottom: 1px solid $whiteBorder
+    @include element(filterItem)
+        position: relative
+        padding-left: 20px
+        margin-bottom: 10px
+        .col &
+            margin-bottom: 0
+            margin-right: 20px
+        label
+            display: block
+            transition: color $animation
+            padding-right: 20px
+            position: relative
+            line-height: 1.4
+            color: rgba($white, .5)
+            &:hover
+                color: $white
+            svg
+                @include position(absolute, 50%, 0, null, null)
+                transform: translateY(-50%)
+                &.pink
+                    fill: $pink
+                &.purple
+                    fill: $purple
+                &.orange
+                    fill: $orange
+                &.yellow
+                    fill: $yellow
+        .eCheckBox
+            @include position(absolute, 2px, null, null, 0, 1)
+
+.eCheckBox
+    width: 12px
+    height: 12px
+    transition: border $animation
+    &:hover
+        border-color: $black
+    input
+        opacity: 0
+        width: 12px
+        height: 12px
+        position: relative
+        z-index: 2
+        display: block
+        cursor: pointer
+    @include element(el)
+        @include position(absolute, 0, 0, 0, 0, 1)
+        background: $white
+        opacity: .15
+        transition: background $animation
+    [type="checkbox"]:checked + .eCheckBox__el
+        opacity: .85
+
+.pagination
+    list-style: none
+    @extend .row, .center-xs
+    margin-bottom: 40px
+    .bFilter &
+        @extend .end-xs
+        margin-bottom: 0
+    li
+        @extend .col
+        a, span
+            display: block
+            line-height: 1.2
+            border-bottom: 1px solid transparent
+            color: inherit
+        a
+            &:hover
+                border-bottom-color: $black
+        span
+            opacity: .5
+
+.mBreadcrumbs
+    position: relative
+    z-index: 100
+    margin-bottom: 20px
+    @include xs()
+        margin-bottom: 10px
+    a, span
+        @include inline-block()
+        @include xs()
+            font-size: 12px
+    .sep
+        padding: 0 5px
+    a
+        color: inherit
+        opacity: .5
+        &:hover
+            opacity: 1
+// Cart
+.emptyCart
+    text-align: center
+    p
+        @extend %titleBig
+        margin-bottom: 40px
+.cart
+    border: 1px solid $whiteBorder
+    max-width: 800px
+    margin: 0 auto
+    @include element(header)
+        padding: 10px 20px
+        background: $white
+        @include xs()
+            display: none
+        & *
+            color: $black
+            font-weight: bold
+            opacity: 1 !important
+    @include element(item)
+        padding: 10px 20px
+        border-top: 1px solid $whiteBorder
+    @include element(title)
+        a
+            color: $white
+            &:hover
+                opacity: .7
+    @include element(sku)
+        opacity: .5
+    @include element(price)
+        font-weight: bold
+    @include element(total)
+        font-weight: bold
+        font-size: 20px
+    @include element(col)
+        position: relative
+        @include modifier(select)
+            @media (min-width: $md)
+                @include f-width(5%)
+            @include xs()
+                @include f-width(15%)
+        @include modifier(title)
+            font-size: 16px
+            @media (min-width: $md)
+                @include f-width(35%)
+            @include xs()
+                @include f-width(85%)
+        @include modifier(sku)
+            @media (min-width: $md)
+                @include f-width(10%)
+            @include xs()
+                display: none
+        @include modifier(price)
+            @media (min-width: $md)
+                @include f-width(15%)
+            @include xs()
+                display: none
+        @include modifier(qty)
+            @media (min-width: $md)
+                @include f-width(20%)
+            @include xs()
+                @include f-width(60%)
+        @include modifier(total)
+            @media (min-width: $md)
+                @include f-width(15%)
+            @include xs()
+                @include f-width(40%)
+        @include modifier(remove)
+            @media (min-width: $md)
+                @include f-width(35%)
+            @include xs()
+                @include f-width(100%)
+                text-align: center
+                a
+                    margin-bottom: 20px
+        @include modifier(labelTotal)
+            text-align: right
+            @media (min-width: $md)
+                @include f-width(50%)
+            @include xs()
+                @include f-width(40%)
+        @include modifier(totalPrice)
+            @media (min-width: $md)
+                @include f-width(15%)
+            @include xs()
+                @include f-width(60%)
+            strong
+                font-size: 24px
+                min-height: 44px
+                display: block
+    @include element(footer)
+        padding: 15px 20px
+        border-top: 1px solid $whiteBorder
+    @include element(checkbox)
+        display: block
+.eQty
+    line-height: 30px
+    text-align: center
+    @include element(input)
+        width: 40px
+    @include element(btn)
+        display: block
+        width: 25px
+        font-weight: bold
+        font-size: 20px
+        cursor: pointer
+        transition: opacity .3s ease
+        &:hover
+            opacity: .5

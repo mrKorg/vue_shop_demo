@@ -1,0 +1,185 @@
+@import "_flex"
+
+$grid-columns: 12 !default
+$gutter-width: 20px !default
+$outer-margin: 20px !default
+
+$xl: 1500px
+$lg-top: 1499px
+$lg: 1200px
+$md-top: 1199px
+$md: 768px
+$xs: 767px
+
+$breakpoints: xs $xs $xs, md $md ($md - 50px), lg $lg ($lg - 30px), xl $xl ($xl - 30px) !default
+$gutter-compensation: $gutter-width * .5 * -1
+$half-gutter-width: $gutter-width * .5
+
+@mixin xl
+    @media (min-width: #{$xl})
+        @content
+
+@mixin lg
+    @media (min-width: #{$lg}) and (max-width: #{$lg-top})
+        @content
+
+@mixin md
+    @media (min-width: #{$md}) and (max-width: #{$md-top})
+        @content
+
+@mixin xs
+    @media (max-width: #{$xs})
+        @content
+
+.container
+    box-sizing: border-box
+    margin: 0 auto
+    min-width: 320px
+    @media (min-width: $md)
+        padding-right: $half-gutter-width
+        padding-left: $half-gutter-width
+    @media (max-width: $xs)
+        padding-right: $half-gutter-width * 1.5
+        padding-left: $half-gutter-width * 1.5
+
+.container-fluid
+    margin-right: auto
+    margin-left: auto
+    padding-right: $outer-margin
+    padding-left: $outer-margin
+
+.row
+    box-sizing: border-box
+    @include flexbox()
+    @include flex(0, 1, auto)
+    @include flex-direction(row)
+    @include flex-wrap(wrap)
+    margin-right: $gutter-compensation
+    margin-left: $gutter-compensation
+
+.row.reverse
+    @include flex-direction(row-reverse)
+
+.col.reverse
+    @include flex-direction(column-reverse)
+
+@mixin flexboxgrid-sass-col-common
+    box-sizing: border-box
+    @include flex-grow(0)
+    @include flex-shrink(0)
+    padding-right: $half-gutter-width
+    padding-left: $half-gutter-width
+
+$name: xs
+
+.col-#{$name}, .col
+    @include flexboxgrid-sass-col-common
+    @include flex-basis(auto)
+
+@for $i from 1 through $grid-columns
+    .col-#{$name}-#{$i}
+        @include flexboxgrid-sass-col-common
+        @include flex-basis(100% / $grid-columns * $i)
+        max-width: 100% / $grid-columns * $i
+
+@for $i from 1 through $grid-columns
+    .col-#{$name}-offset-#{$i}
+        @include flexboxgrid-sass-col-common
+        margin-left: 100% / $grid-columns * $i
+
+.col-#{$name}
+    @include flex-grow(1)
+    @include flex-basis(0)
+    max-width: 100%
+
+.start-#{$name}
+    @include justify-content(flex-start)
+    text-align: start
+
+.center-#{$name}
+    @include justify-content(center)
+    text-align: center
+
+.end-#{$name}
+    @include justify-content(flex-end)
+    text-align: end
+
+.top-#{$name}
+    @include align-items(flex-start)
+
+.middle-#{$name}
+    @include align-items(center)
+
+.bottom-#{$name}
+    @include align-items(flex-end)
+
+.around-#{$name}
+    @include justify-content(space-around)
+
+.between-#{$name}
+    @include justify-content(space-between)
+
+.first-#{$name}
+    order: -1
+
+.last-#{$name}
+    order: 1
+
+@each $breakpoint in $breakpoints
+    $name: nth($breakpoint, 1)
+    $size: nth($breakpoint, 2)
+    $container: nth($breakpoint, 3)
+    @media only screen and (min-width: $size)
+        .col-#{$name}
+            @include flexboxgrid-sass-col-common
+            @include flex-basis(auto)
+
+        @for $i from 1 through $grid-columns
+            .col-#{$name}-#{$i}
+                @include flexboxgrid-sass-col-common
+                @include flex-basis(100% / $grid-columns * $i)
+                max-width: 100% / $grid-columns * $i
+        @for $i from 1 through $grid-columns
+            .col-#{$name}-offset-#{$i}
+                @include flexboxgrid-sass-col-common
+                margin-left: 100% / $grid-columns * $i
+        .col-#{$name}
+            @include flex-grow(1)
+            @include flex-basis(0)
+            max-width: 100%
+        .start-#{$name}
+            @include justify-content(flex-start)
+            text-align: start
+        .center-#{$name}
+            @include justify-content(center)
+            text-align: center
+        .end-#{$name}
+            @include justify-content(flex-end)
+            text-align: end
+        .top-#{$name}
+            @include align-items(flex-start)
+            text-align: left
+        .middle-#{$name}
+            @include align-items(center)
+            text-align: left
+        .bottom-#{$name}
+            @include align-items(flex-end)
+            text-align: left
+        .around-#{$name}
+            @include justify-content(space-around)
+            text-align: left
+        .between-#{$name}
+            @include justify-content(space-between)
+            text-align: left
+        .first-#{$name}
+            order: -1
+        .last-#{$name}
+            order: 1
+    @if $name != 'xs'
+        @media only screen and (min-width: $size)
+            .container
+                max-width: $container
+    @else
+        @media only screen and (max-width: $size)
+            .container
+                max-width: $container
