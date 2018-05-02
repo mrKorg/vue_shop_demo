@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import VueLocalStorage from 'vue-localstorage'
-
-Vue.use(VueLocalStorage);
 
 const createStore = () => {
     return new Vuex.Store({
@@ -90,7 +87,7 @@ const createStore = () => {
                     cat_id: 2
                 },
                 {
-                    id: 1,
+                    id: 9,
                     title: 'Virtual product C1',
                     slug: 'virtual-product-c1',
                     sku: 'c1',
@@ -100,7 +97,7 @@ const createStore = () => {
                     cat_id: 3
                 },
                 {
-                    id: 9,
+                    id: 10,
                     title: 'Virtual product C2',
                     slug: 'virtual-product-c2',
                     sku: 'c2',
@@ -110,7 +107,7 @@ const createStore = () => {
                     cat_id: 3
                 },
                 {
-                    id: 10,
+                    id: 11,
                     title: 'Virtual product C3',
                     slug: 'virtual-product-c3',
                     sku: 'c1',
@@ -120,7 +117,7 @@ const createStore = () => {
                     cat_id: 3
                 },
                 {
-                    id: 11,
+                    id: 12,
                     title: 'Virtual product C4',
                     slug: 'virtual-product-c4',
                     sku: 'c2',
@@ -215,7 +212,7 @@ const createStore = () => {
             },
             setCartFromStorage(state, storageCart) {
                 // Set cart from local storage data
-                JSON.parse(storageCart).forEach((item) => {
+                JSON.parse(storageCart).reverse().forEach((item) => {
                     for (let id in item) {
                         if (item.hasOwnProperty(id)) {
                             let product = this.state.products.find((product) => {

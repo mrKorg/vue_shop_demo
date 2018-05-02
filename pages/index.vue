@@ -16,11 +16,11 @@
             </div>
             <div class="col-xs-12 col-lg-9">
                 <div v-if="productsArray" class="pCatalog__list gridRow">
-                    <div class="row">
+                    <transition-group name="list" tag="div" class="row">
                         <div v-for="(product, index) in productsArray" v-bind:key="index" class="col-xs-12 col-md-6 col-lg-4 col-xl-3">
                             <productPreview :product="product"></productPreview>
                         </div>
-                    </div>
+                    </transition-group>
                 </div>
             </div>
         </div>

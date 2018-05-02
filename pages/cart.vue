@@ -110,6 +110,7 @@
 </template>
 
 <script>
+    import Vue from 'vue'
     import {mapState} from 'vuex'
 
     export default {
@@ -127,9 +128,9 @@
         methods: {
             changeQty(item, sign) {
                 if (sign === 'minus' && item.qty > 1) {
-                    --item.qty;
+                    Vue.set(item, 'qty', --item.qty);
                 } else if (sign === 'plus') {
-                    ++item.qty;
+                    Vue.set(item, 'qty', ++item.qty);
                 }
                 this.$store.dispatch('setStorageCart');
             },

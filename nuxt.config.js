@@ -38,6 +38,7 @@ module.exports = {
         },
         vendor: ['vue-localstorage']
     },
+    plugins: ['~/plugins/vue-localstorage'],
     css: [
         '@/assets/sass/app.sass'
     ]
