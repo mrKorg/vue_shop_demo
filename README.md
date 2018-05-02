@@ -1,6 +1,6 @@
 # vue-shop-demo
 
-> Nuxt.js project
+> Test task for TR Logic LLC
 
 ## Build Setup
 
@@ -18,5 +18,3 @@ $ npm start
 # generate static project
 $ npm run generate
 ```
-
-For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
