@@ -1,6 +1,6 @@
 <template>
 
-    <div class="page__wrap">
+    <div class="page__wrap" v-if="product">
 
         <div class="mBreadcrumbs">
             <nuxt-link :to="{path: '/'}">
@@ -16,7 +16,7 @@
             </span>
         </div>
 
-        <div class="row" v-if="product">
+        <div class="row">
             <div class="col-xs-12 col-lg-6">
                 <div class="pProduct__image">
                     <img :src="product.image" alt="">
