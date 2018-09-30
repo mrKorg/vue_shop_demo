@@ -168,7 +168,7 @@ const createStore = () => {
             },
             cartItems: state => {
                 // Get reverse array of products in the cart
-                return state.cart.reverse();
+                return state.cart ? state.cart.reverse() : null;
             },
             cartIds: state => {
                 // Get array of products in the cart
@@ -212,22 +212,25 @@ const createStore = () => {
             },
             setCartFromStorage(state, storageCart) {
                 // Set cart from local storage data
-                JSON.parse(storageCart).reverse().forEach((item) => {
-                    for (let id in item) {
-                        if (item.hasOwnProperty(id)) {
-                            let product = this.state.products.find((product) => {
-                                return product.id === Number(id)
-                            });
-                            Vue.set(
-                                this.state.cart,
-                                this.state.cart.length,
-                                {
-                                    product: product,
-                                    qty: item[id]
-                                })
+                let json = JSON.parse(storageCart);
+                if (json) {
+                    json.reverse().forEach((item) => {
+                        for (let id in item) {
+                            if (item.hasOwnProperty(id)) {
+                                let product = this.state.products.find((product) => {
+                                    return product.id === Number(id)
+                                });
+                                Vue.set(
+                                    this.state.cart,
+                                    this.state.cart.length,
+                                    {
+                                        product: product,
+                                        qty: item[id]
+                                    })
+                            }
                         }
-                    }
-                });
+                    });
+                }
             },
             deleteProductsFromCart(state, ids) {
                 // Delete products from cart by id's
