@@ -1,5 +1,5 @@
 <template>
-    <div class="eProduct">
+    <div class="eProduct" v-if="product">
         <div class="eProduct__header">
             <div class="row middle-xs between-xs">
                 <div class="col">

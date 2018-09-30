@@ -16,7 +16,7 @@
             </span>
         </div>
 
-        <div class="row">
+        <div class="row" v-if="product">
             <div class="col-xs-12 col-lg-6">
                 <div class="pProduct__image">
                     <img :src="product.image" alt="">
