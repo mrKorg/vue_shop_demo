@@ -1,8 +1,8 @@
 <template>
 
-    <div class="page__wrap" v-if="product">
+    <div class="page__wrap">
 
-        <div class="mBreadcrumbs">
+        <div class="mBreadcrumbs" v-if="product">
             <nuxt-link :to="{path: '/'}">
                 Vue Shop
             </nuxt-link>
@@ -16,7 +16,7 @@
             </span>
         </div>
 
-        <div class="row">
+        <div class="row" v-if="product">
             <div class="col-xs-12 col-lg-6">
                 <div class="pProduct__image">
                     <img :src="product.image" alt="">
@@ -64,10 +64,14 @@
     import {mapState} from 'vuex'
 
     export default {
-        asyncData(context) {
+        data() {
+            return {
+                product: null
+            }
+        },
+        created() {
             return new Promise((resolve, reject) => {
-                let product = context.store.state.products.find(t => t.slug === context.route.params.slug);
-                resolve({product: product});
+                this.product = this.$store.state.products.find(t => t.slug === this.$route.params.slug);
             })
         },
         methods: {
